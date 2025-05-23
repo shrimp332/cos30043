@@ -1,12 +1,12 @@
 import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import '@/style.css'
+import App from '@/App.vue'
 
 import { createWebHistory, createRouter } from 'vue-router'
 
-import Home from './components/Home.vue'
-import News from './components/News.vue'
-import About from './components/About.vue'
+import Home from '@/components/Home.vue'
+import News from '@/components/News.vue'
+import About from '@/components/About.vue'
 
 const routes = [
     { path: '/', component: Home},

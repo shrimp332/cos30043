@@ -1,7 +1,7 @@
 services:
   backend:
-    image: php:8.4.7-apache
-    container_name: php_apache
+    build:
+      context: .
     ports:
       - "5000:80"
     volumes:

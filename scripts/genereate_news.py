@@ -22,13 +22,11 @@ for i in range(25):
     data[i] = {
         "date": generate_random_date(),
         "title": f"{i + 1} Item",
-        "content": f"Here is a short description for a {{ category }} post on {{ date }}",
         "category": random.choice(categories)
     }
 
 for item in data:
-    item["content"] = item["content"].replace(
-        "{{ category }}", item["category"].lower()).replace("{{ date }}", item["date"])
+    item["content"] = f"This is the content for {item["title"]} in the {item["category"]} category on the day {item["date"]}"
 
 json_data = json.dumps(data, indent=4)
 

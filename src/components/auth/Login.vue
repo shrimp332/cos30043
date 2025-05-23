@@ -13,7 +13,14 @@
         <div class="w-100 text-center">
             <strong v-if="error" class="text-danger">{{ error }}</strong>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class=" btn btn-primary" :disabled="loading">
+            <span v-if="!loading">Login</span>
+            <span v-if="loading" class="spinner-border spinner-border-sm"></span>
+            <span class="ms-2" v-if="loading">Loading..</span>
+        </button>
+        <div class="mt-2">
+            <router-link to="/create-account">Click here to create acount</router-link>
+        </div>
     </form>
 </template>
 
@@ -26,21 +33,29 @@ export default {
             error: "",
             username: "",
             password: "",
+            loading: false
         }
     },
     methods: {
         async login() {
             try {
+                this.loading = true
                 const response = await fetch(this.loginEndpoint, {
-                    method: 'POST',
+                    method: 'post',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'content-type': 'application/json'
                     },
                     body: JSON.stringify({
                         username: this.username,
                         password: this.password
                     })
                 });
+                this.loading = false
+
+                if (!response.ok) {
+                    this.error = `Failed to log in. Error: ${response.status}`
+                    return
+                }
 
                 const data = await response.json();
 
@@ -48,7 +63,7 @@ export default {
                     // Handle successful login
                     this.$router.push('/app');
                 } else {
-                    this.error = data.message;
+                    this.error = data.error;
                 }
             } catch (error) {
                 this.error = 'An error occurred. Please try again.';

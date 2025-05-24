@@ -28,45 +28,44 @@ $password_hash = crypt($password, generate_crypt_salt());
 $stmt->bind_param("ss", $username, $password_hash);
 
 try {
-if (!$stmt->execute()) {
-    if ($stmt->errno == 1062) {
-        // Username taken
-        $error = 'Username Taken';
+    if (!$stmt->execute()) {
+        if ($stmt->errno == 1062) {
+            // Username taken
+            $error = 'Username Taken';
 
-        $data = [
-            'success' => false,
-            'error' => $error,
-        ];
-        $jsonData = json_encode($data);
+            $data = [
+                'success' => false,
+                'error' => $error,
+            ];
+            $jsonData = json_encode($data);
 
-        http_response_code(400);
-        echo $jsonData;
-    } else {
-        $error = 'Internal Server Error';
+            http_response_code(400);
+            echo $jsonData;
+        } else {
+            $error = 'Internal Server Error';
 
-        $data = [
-            'success' => false,
-            'error' => $error,
-        ];
-        $jsonData = json_encode($data);
+            $data = [
+                'success' => false,
+                'error' => $error,
+            ];
+            $jsonData = json_encode($data);
 
-        http_response_code(500);
-        echo $jsonData;
+            http_response_code(500);
+            echo $jsonData;
+        }
+        die();
     }
-    die();
-}
-}
-catch (Exception $_) {
-        $error = 'Username Taken';
+} catch (Exception $_) {
+    $error = 'Username Taken';
 
-        $data = [
-            'success' => false,
-            'error' => $error,
-        ];
-        $jsonData = json_encode($data);
+    $data = [
+        'success' => false,
+        'error' => $error,
+    ];
+    $jsonData = json_encode($data);
 
-        http_response_code(400);
-        echo $jsonData;
+    http_response_code(400);
+    echo $jsonData;
     die();
 }
 

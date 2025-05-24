@@ -1,7 +1,7 @@
 <?php
 
-include './db_config.php';
-include './auth_common.php';
+require_once 'db_config.php';
+require_once 'auth_common.php';
 
 header('Content-Type: application/json');
 
@@ -71,9 +71,18 @@ while (!$inserted) {
     $inserted = true;
 }
 
+setcookie(
+    "session_id",
+    $session_id,
+    time() + 604800, // expires 1 week
+    "/",
+    "",    // domain
+    false, // https
+    true   // http only
+);
+
 $data = [
     'success' => true,
-    'session_id' => $session_id
 ];
 
 $jsonData = json_encode($data);

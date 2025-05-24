@@ -1,7 +1,10 @@
 // So i can change to mercury later
-const URL = "http://localhost:5000"
+const URL = "/api"
 
 export default {
     hello: `${URL}/hello.php`,
-    login: `${URL}/login.php`
+    login: `${URL}/login.php`,
+    logout: `${URL}/logout.php`,
+    createAccount: `${URL}/create-account.php`,
+    username: `${URL}/username.php`
 };

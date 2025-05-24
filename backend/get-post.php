@@ -23,6 +23,7 @@ if (!$stmt->fetch()) {
 
 $data = [
     'success' => true,
+    'id' => $post_id,
     'title' => $title_db,
     'content' => $content_db,
     'timestamp' => $created_at_db,

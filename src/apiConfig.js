@@ -6,5 +6,8 @@ export default {
     login: `${URL}/login.php`,
     logout: `${URL}/logout.php`,
     createAccount: `${URL}/create-account.php`,
-    username: `${URL}/username.php`
+    username: `${URL}/username.php`,
+    createPost: `${URL}/create-post.php`,
+    getPost: `${URL}/get-post.php`,
+    createComment: `${URL}/create-comment.php`,
 };

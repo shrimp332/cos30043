@@ -12,6 +12,8 @@ import About from '@/components/About.vue'
 import Login from '@/components/auth/Login.vue'
 import Logout from '@/components/auth/Logout.vue'
 import CreateAccount from '@/components/auth/CreateAccount.vue'
+import CreatePost from '@/components/post/CreatePost.vue'
+import Post from '@/components/Post.vue'
 
 const routes = [
     { path: '/', component: Home },
@@ -20,6 +22,8 @@ const routes = [
     { path: '/login', component: Login },
     { path: '/logout', component: Logout},
     { path: '/create-account', component: CreateAccount },
+    { path: '/create-post', component: CreatePost },
+    { path: '/post/:id', component: Post }
 ]
 
 const router = createRouter({

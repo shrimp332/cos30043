@@ -44,7 +44,7 @@ export default {
             }).then(res => res.json()
             ).then(data => {
                 if (data.success) {
-                    if (data.posts.length > 1) {
+                    if (data.posts.length >= 1) {
                         this.posts = data.posts
                     } else if (this.page > 1) {
                         this.page--

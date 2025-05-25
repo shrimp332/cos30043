@@ -12,7 +12,7 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '/api': {
+            '/cos30043/s103056462/project/backend': {
                 target: 'http://localhost:5000', // your backend
                 changeOrigin: true,
                 secure: false,

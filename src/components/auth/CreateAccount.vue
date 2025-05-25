@@ -8,7 +8,10 @@
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password:</label>
-            <input type="password" name="password" class="form-control" id="password" v-model="password" required>
+            <input type="password" name="password" class="form-control" id="password" v-model="password"
+                pattern=".*[^a-zA-Z0-9].*"
+                title="Must include at least one symbol (non-letter/number)"
+                minlength="8" required>
         </div>
         <div class="mb-3">
             <label for="password2" class="form-label">Confirm Password:</label>

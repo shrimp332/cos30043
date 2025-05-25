@@ -1,9 +1,9 @@
 <?php
 require_once 'db_config.php';
 
-$post_id = isset($input['post_id']) ? $input['post_id'] : '';
+$post_id = isset($_GET['post_id']) ? $_GET['post_id'] : -1;
 
-if ( $post_id == '') {
+if ( $post_id == -1) {
     $error = 'You must ask for a post';
 
     $data = [
@@ -16,7 +16,7 @@ if ( $post_id == '') {
     die();
 }
 
-$stmt = $conn->prepare("SELECT content, created_at, u.username FROM Comments AS c JOIN Users AS u ON c.owner_id = u.user_id WHERE post_id = ? ORDER BY p.created_at DESC");
+$stmt = $conn->prepare("SELECT content, created_at, u.username FROM Comments AS c JOIN Users AS u ON c.owner_id = u.user_id WHERE post_id = ? ORDER BY c.created_at DESC");
 $stmt->bind_param('i', $post_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -33,4 +33,9 @@ if ($result && $result->num_rows > 0) {
     }
 }
 
-echo json_encode($comments, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+$data = [
+    'success' => true,
+    'comments' => $comments
+];
+
+echo json_encode($data , JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);

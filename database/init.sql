@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS Users (
     password_hash NVARCHAR(255) NOT NULL
 );
 
-CREATE UNIQUE INDEX idx_users_username ON Users(username);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_username ON Users(username);
 
 CREATE TABLE IF NOT EXISTS UserSessions (
     session_id CHAR(32) PRIMARY KEY NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Posts (
 
 CREATE TABLE IF NOT EXISTS Likes (
     user_id INT,
-    post_id INT
+    post_id INT,
     PRIMARY KEY (user_id, post_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE

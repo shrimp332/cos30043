@@ -19,5 +19,6 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/api/, '') // optional: strip /api prefix
             }
         }
-    }
+    },
+    base: "/cos30043/s103056462/project"
 })

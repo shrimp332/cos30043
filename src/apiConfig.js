@@ -1,5 +1,5 @@
 // So i can change to mercury later
-const URL = "/api"
+const URL = "/cos30043/s103056462/project/backend"
 
 export default {
     hello: `${URL}/hello.php`,

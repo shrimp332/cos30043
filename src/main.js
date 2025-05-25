@@ -4,7 +4,7 @@ import App from '@/App.vue'
 
 import { createStore } from 'vuex'
 
-import { createWebHistory, createRouter } from 'vue-router'
+import { createWebHashHistory, createRouter } from 'vue-router'
 
 import Home from '@/components/Home.vue'
 import News from '@/components/News.vue'
@@ -29,7 +29,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
 })
 
